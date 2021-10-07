@@ -15,7 +15,6 @@ class MovieList extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         final movie = movies[index];
-
         return ListTile(
           contentPadding: const EdgeInsets.all(10),
           leading: Container(

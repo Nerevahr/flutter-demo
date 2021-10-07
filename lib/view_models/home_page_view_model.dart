@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 class HomePageViewModel extends ChangeNotifier {
 
+  final String _title = 'Flutter Demo';
+
   int _counter = 0;
+
+  get getTitle => _title;
 
   get getCounter => _counter;
 
@@ -15,7 +19,6 @@ class HomePageViewModel extends ChangeNotifier {
       // called again, and so nothing would appear to happen.
       _counter++;
       notifyListeners();
-
   }
 
 }

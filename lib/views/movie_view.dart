@@ -13,10 +13,12 @@ class _MovieListPageState extends State<MovieListPage> {
 
   final TextEditingController _controller = TextEditingController();
 
+  late Future<void> movieListFuture;
+
   @override
   void initState() {
     super.initState();
-    Provider.of<MovieListViewModel>(context, listen: false).fetchMovies("iron man");
+    movieListFuture =Provider.of<MovieListViewModel>(context, listen: false).fetchMovies("iron man");
 //you can use anything you like or not use anything here. I call it just to have a content on the screen rather than having a blank screen
   }
 
@@ -30,7 +32,7 @@ class _MovieListPageState extends State<MovieListPage> {
             title: const Text("Movies MVVM Example")
         ),
         body: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(children: <Widget>[
@@ -57,8 +59,18 @@ class _MovieListPageState extends State<MovieListPage> {
 
                 ),
               ),
-              Expanded(
-                  child: MovieList(movies: vm.movies))//we will create this further down
+              FutureBuilder(
+                future: movieListFuture,
+                builder:  (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Expanded(child: MovieList(movies: vm.movies));
+                  }
+                },
+              )//we will create this further down
             ])
         )
 
