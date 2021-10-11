@@ -1,5 +1,6 @@
 import 'package:demo/views/home_page_view.dart';
 import 'package:demo/views/movie_view.dart';
+import 'package:demo/views/pokemon_view.dart';
 import 'package:demo/widgets/movie_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MovieListPage(),
+      home: PokemonListPage(),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
