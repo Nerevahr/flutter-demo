@@ -1,4 +1,5 @@
 import 'package:demo/view_models/pokemon_view_model.dart';
+import 'package:demo/views/pokemon_details_view.dart';
 import 'package:flutter/material.dart';
 
 class PokemonList extends StatelessWidget {
@@ -17,6 +18,14 @@ class PokemonList extends StatelessWidget {
         final pokemon = pokemons[index];
 
         return ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PokemonDetailsView(pokemonId: index+1,)
+              )
+            );
+          },
           contentPadding: const EdgeInsets.all(10),
           leading: Container(
             decoration: BoxDecoration(
